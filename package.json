@@ -1,0 +1,22 @@
+{
+  "name": "amazon-scrapper-server",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "start": "node -r esm ./src/server.js",
+    "dev": "nodemon -r esm ./src/server.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  },
+  "dependencies": {
+    "axios": "^0.26.1",
+    "cheerio": "^1.0.0-rc.12",
+    "esm": "^3.2.25",
+    "express": "^4.18.2"
+  }
+}
