@@ -1,10 +1,12 @@
 import express from 'express';
+import cors from 'cors';
 import axios from 'axios';
 import { load } from 'cheerio';
 
 const app = express();
 
 app.use(express.json());
+app.use(cors({}));
 
 const SCRAPE_URL = 'https://www.amazon.com/s?k=';
 
