@@ -51,7 +51,7 @@ const getProducstFromAmazon = async (req, res) => {
   }
 };
 
-app.use('/scrape/amazon', getProducstFromAmazon);
+app.use('/scrap/amazon', getProducstFromAmazon);
 app.use('/health-check', (req, res) => {
   res.status(200).send('working');
 });
