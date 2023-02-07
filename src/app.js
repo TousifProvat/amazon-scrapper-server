@@ -13,7 +13,6 @@ const SCRAPE_URL = 'https://www.amazon.com/s?k=';
 const getProducstFromAmazon = async (req, res) => {
   const { product } = req.query;
 
-  console.log({ product: SCRAPE_URL + product });
   try {
     const products = [];
 
