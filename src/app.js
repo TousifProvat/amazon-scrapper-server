@@ -1,8 +1,7 @@
 import express from 'express';
 import cors from 'cors';
-import axios from 'axios';
+import puppeteer from 'puppeteer';
 import { load } from 'cheerio';
-
 const app = express();
 
 app.use(express.json());
@@ -16,10 +15,24 @@ const getProducstFromAmazon = async (req, res) => {
   try {
     const products = [];
 
-    const { data } = await axios.get(SCRAPE_URL + product);
-    const $ = load(data);
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
 
-    $('div.s-result-item.s-asin', data).each((index, element) => {
+    await page.goto(SCRAPE_URL + product);
+
+    const data = await page.evaluate(() => {
+      return {
+        html: document.documentElement.innerHTML,
+        width: document.documentElement.clientHeight,
+        height: document.documentElement.clientHeight,
+      };
+    });
+
+    await browser.close();
+
+    const $ = load(data.html);
+
+    $('div.s-result-item.s-asin').each((_index, element) => {
       const product = $(element);
 
       const title = product
